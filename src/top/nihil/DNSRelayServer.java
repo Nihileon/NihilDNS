@@ -1,28 +1,28 @@
 package top.nihil;
 
 
-import com.company.DNS;
 import lombok.AllArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
-import java.net.*;
-import java.util.Arrays;
-import java.util.ConcurrentModificationException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Log
 @Accessors(chain = true)
 @AllArgsConstructor
-public class DNSRelayServer {
-    public static InetSocketAddress listenAddress, remoteDNS;
+class DNSRelayServer {
+    private static InetSocketAddress listenAddress, remoteDNS;
     private Hosts hosts;
+    static DatagramSocket socket;
+    public static final Object mLock = new Object();
 
-    public static DatagramSocket socket;
-
-    public DNSRelayServer(InetSocketAddress listenAddress, InetSocketAddress remoteDNS, Hosts hosts) {
+    DNSRelayServer(InetSocketAddress listenAddress, InetSocketAddress remoteDNS, Hosts hosts) {
         DNSRelayServer.listenAddress = listenAddress;
         DNSRelayServer.remoteDNS = remoteDNS;
         this.hosts = hosts;
@@ -34,21 +34,15 @@ public class DNSRelayServer {
 
     }
 
-    public void start() throws IOException {
-
-
+    void start() {
         ExecutorService servicePool = Executors.newCachedThreadPool();
-
         byte[] data = new byte[1024];
         DatagramPacket packet = new DatagramPacket(data, data.length);
-        while (true) {
-            try {
-                socket.receive(packet);
-                servicePool.execute(new DNSRelayServerThread(packet, hosts, remoteDNS));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+        while (true) try {
+            socket.receive(packet);
+            servicePool.execute(new DNSRelayServerThread(packet, hosts, remoteDNS));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

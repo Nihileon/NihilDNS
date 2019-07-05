@@ -89,7 +89,6 @@ public class DNSQuestion {
     public static final int QTYPE_AAAA = (28);
 
     public DNSQuestion() {
-
     }
 
     public String getQTYPEName() {
@@ -108,14 +107,14 @@ public class DNSQuestion {
     }
 
     public byte[] toByteArray() {
-        byte[] domainNameByte  = Converter.domainNameToByteArray(QNAME);
-        byte[] bytes = new byte[domainNameByte.length+4];
-        int offset =0;
-        System.arraycopy(domainNameByte,0,bytes,offset,domainNameByte.length);
-        offset+=domainNameByte.length;
-        System.arraycopy(Converter.shortToByteArray(QTYPE),0,bytes,offset,2);
-        offset+=2;
-        System.arraycopy(Converter.shortToByteArray(QCLASS),0,bytes,offset,2);
+        byte[] domainNameByte = Converter.domainNameToByteArray(QNAME);
+        byte[] bytes = new byte[domainNameByte.length + 4];
+        int offset = 0;
+        System.arraycopy(domainNameByte, 0, bytes, offset, domainNameByte.length);
+        offset += domainNameByte.length;
+        System.arraycopy(Converter.shortToByteArray(QTYPE), 0, bytes, offset, 2);
+        offset += 2;
+        System.arraycopy(Converter.shortToByteArray(QCLASS), 0, bytes, offset, 2);
         return bytes;
     }
 
