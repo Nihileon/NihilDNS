@@ -23,8 +23,8 @@ public class DNSRelayServer {
     public static DatagramSocket socket;
 
     public DNSRelayServer(InetSocketAddress listenAddress, InetSocketAddress remoteDNS, Hosts hosts) {
-        this.listenAddress = listenAddress;
-        this.remoteDNS = remoteDNS;
+        DNSRelayServer.listenAddress = listenAddress;
+        DNSRelayServer.remoteDNS = remoteDNS;
         this.hosts = hosts;
         try {
             socket = new DatagramSocket(53, listenAddress.getAddress());
@@ -37,7 +37,7 @@ public class DNSRelayServer {
     public void start() throws IOException {
 
 
-        ExecutorService servicePool = Executors.newFixedThreadPool(50);
+        ExecutorService servicePool = Executors.newCachedThreadPool();
 
         byte[] data = new byte[1024];
         DatagramPacket packet = new DatagramPacket(data, data.length);
