@@ -86,7 +86,7 @@ public class DNSMessage {
     }
 
 
-    public byte[] getResponseByteArray() {
+    byte[] getResponseByteArray() {
         int length = 0;
         byte[] headerBytes = header.toByteArray();
         length += headerBytes.length;
@@ -106,7 +106,7 @@ public class DNSMessage {
         List<byte[]> authoritiesList = new ArrayList<>();
         for (DNSResourceRecord rr : authorities) {
             byte[] temp = rr.toByteArray();
-            answersList.add(temp);
+            authoritiesList.add(temp);
             length += temp.length;
         }
 

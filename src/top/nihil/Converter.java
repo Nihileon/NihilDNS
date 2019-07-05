@@ -2,9 +2,9 @@ package top.nihil;
 
 import lombok.extern.java.Log;
 
-import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
+
 @Log
 public class Converter {
     private Map<Integer, String> compressedDomainName = new HashMap<>();
@@ -29,8 +29,7 @@ public class Converter {
     }
 
     public static String byteArrayToDomainName(String domainName, byte[] bytes, int offset) {
-
-        int partLength = bytes[offset];
+        int partLength = bytes[offset] & 0xff;
         offset++;
         if (partLength >= 0b11000000) {
             int pos = ((partLength & 0b00111111) << 8) | bytes[offset];
@@ -49,7 +48,7 @@ public class Converter {
         }
     }
 
-    public static byte[] shortToByteArray(int  i) {
+    public static byte[] shortToByteArray(int i) {
         byte[] bytes = new byte[2];
         bytes[1] = (byte) (i & 0xff);
         bytes[0] = (byte) ((i >> 8) & 0xff);

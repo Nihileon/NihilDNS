@@ -65,9 +65,9 @@ public class DNSResourceRecord {
     public static final int QTYPE_A = (1);
     public static final int QTYPE_NS = (2);
     public static final int QTYPE_CNAME = (5);
+    public static final int QTYPE_SOA = (6);
     public static final int QTYPE_MX = (15);
     public static final int QTYPE_AAAA = (28);
-
 
     public byte[] toByteArray() {
         byte[] bytes = new byte[12 + RDLENGTH];
