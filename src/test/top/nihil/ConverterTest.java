@@ -1,6 +1,9 @@
-package top.nihil;
+package test.top.nihil;
 
+import com.sun.tools.classfile.ConstantPool;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import top.nihil.Converter;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -13,6 +16,10 @@ class ConverterTest {
 
     @Test
     void byteArrayToShort() {
+        byte[] bytes = new byte[2];
+        bytes[0] = (byte)0x1f;
+        bytes[1] = (byte)0x1f;
+        Assertions.assertEquals(0x1f1f, Converter.byteArrayToUnsignedShort(bytes));
     }
 
     @Test

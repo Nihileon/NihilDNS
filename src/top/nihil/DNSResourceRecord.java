@@ -68,29 +68,21 @@ public class DNSResourceRecord {
     public static final int QTYPE_MX = (15);
     public static final int QTYPE_AAAA = (28);
 
-//    public DNSResourceRecord (MessageDataInputStream in)throws IOException {
-//        NAME = in.readDomainName();
-//        TYPE = in.readUnsignedShort();
-//        CLASS = in.readUnsignedShort();
-//        TTL = in.readUnsignedInt();
-//        RDLENGTH = in.readUnsignedShort();
-//        RDATA = new byte[RDLENGTH];
-//        in.read(RDATA);
-//    }
 
     public byte[] toByteArray() {
         byte[] bytes = new byte[12 + RDLENGTH];
         int offset = 0;
-        System.arraycopy(Converter.shortToByteArray((short)NAME), 0, bytes, offset, 2);
+        System.arraycopy(Converter.shortToByteArray(NAME), 0, bytes, offset, 2);
         offset += 2;
-        System.arraycopy(Converter.shortToByteArray((short)TYPE), 0, bytes, offset, 2);
+        System.arraycopy(Converter.shortToByteArray(TYPE), 0, bytes, offset, 2);
         offset += 2;
-        System.arraycopy(Converter.shortToByteArray((short)CLASS), 0, bytes, offset, 2);
+        System.arraycopy(Converter.shortToByteArray(CLASS), 0, bytes, offset, 2);
         offset += 2;
-        System.arraycopy(Converter.intToByteArray((int)TTL), 0, bytes, offset, 4);
+        System.arraycopy(Converter.intToByteArray(TTL), 0, bytes, offset, 4);
         offset += 4;
-        System.arraycopy(Converter.shortToByteArray((short)RDLENGTH), 0, bytes, offset, 2);
+        System.arraycopy(Converter.shortToByteArray(RDLENGTH), 0, bytes, offset, 2);
         offset += 2;
+
         if (TYPE == QTYPE_A) {
             System.arraycopy(Converter.ipv4ToByteArray(RDATA), 0, bytes, offset, RDLENGTH);
         } else if (TYPE == QTYPE_CNAME) {

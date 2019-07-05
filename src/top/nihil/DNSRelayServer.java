@@ -1,97 +1,82 @@
 package top.nihil;
 
-import com.oracle.tools.packager.Log;
+
+import lombok.AllArgsConstructor;
+import lombok.experimental.Accessors;
+import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.net.*;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 
+@Log
+@Accessors(chain = true)
+@AllArgsConstructor
 public class DNSRelayServer {
     private InetSocketAddress listenAddress, remoteDNS;
     private Hosts hosts;
 
-    public DNSRelayServer(InetSocketAddress listenAddress, InetSocketAddress remoteDNS, Hosts hosts) {
-        this.listenAddress = listenAddress;
-        this.remoteDNS = remoteDNS;
-        this.hosts = hosts;
-    }
-
     public void start() throws IOException {
-        DatagramSocket socket = new DatagramSocket(listenAddress);
+        DatagramSocket socket = new DatagramSocket(53, listenAddress.getAddress());
         byte[] data = new byte[1024];
         DatagramPacket packet = new DatagramPacket(data, data.length);
         while (true) {
             socket.receive(packet);
-            int offset = 0;
-            DNSHeader dnsHeader = new DNSHeader();
-            DNSQuestion dnsQuestion = new DNSQuestion();
-            dnsHeader.setID(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-            offset += 2;
-            dnsHeader.setFlags(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2))).flagsTobits();
-            offset += 2;
-            dnsHeader.setQDCOUNT(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-            offset += 2;
-            dnsHeader.setANCOUNT(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-            offset += 2;
-            dnsHeader.setNSCOUNT(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-            offset += 2;
-            dnsHeader.setARCOUNT(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-            offset += 2;
-            if (dnsHeader.getQDCOUNT() > 0) {
-                String domainName = Converter.byteArrayToDomainName(null, data, offset);
-                dnsQuestion.setQNAME(domainName);
-                offset += domainName.length() + 2;
-                dnsQuestion.setQTYPE(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-                offset += 2;
-                dnsQuestion.setQCLASS(Converter.byteArrayToShort(Arrays.copyOfRange(data, offset, offset + 2)));
-                offset += 2;
-            } else {
-                Log.info("No QDCOUNT error");
-            }
+            DNSMessage receiveMessage = new DNSMessage(data);
+            String ipAddress = hosts.getHostMap().getOrDefault(receiveMessage.getQuestion().getQNAME(), "");
 
-            String ipAddress = hosts.getHostMap().getOrDefault(dnsQuestion.getQNAME(), "");
-            Log.info(ipAddress);
-            if (!ipAddress.equals("") && dnsHeader.getQDCOUNT() == 1) {
+            if (!ipAddress.equals("") && receiveMessage.getHeader().getQDCOUNT() == 1) {
+                DNSMessage responseMessage = new DNSMessage();
                 int flags = 0;
                 if (ipAddress.equals("0.0.0.0")) {
                     flags = 0x8580;
-                }else {
+                    log.info(String.format("%s is forbidden", receiveMessage.getQuestion().getQNAME()));
+                } else {
                     flags = 0x8583;
+                    log.info(String.format("host %s is in the host file", receiveMessage.getQuestion().getQNAME()));
                 }
 
-                DNSHeader responseHeader = new DNSHeader(
-                        dnsHeader.getID(),flags,dnsHeader.getQDCOUNT(),1,1,0);
-                byte[] headerBytes = responseHeader.toByteArray();
-                byte[] questionBytes = dnsQuestion.toByteArray();
-                DNSResourceRecord responseAnswer = new DNSResourceRecord(
-                        0xc00c, dnsQuestion.getQTYPE(), dnsQuestion.getQCLASS(), 3600*24, (short) 4, ipAddress);
-                byte[] answerBytes = responseAnswer.toByteArray();
-                DNSResourceRecord responseAuth = new DNSResourceRecord(0xc00c,  6, dnsQuestion.getQCLASS(), 3600*24, (short) 0 , null);
-                byte[] authBytes = responseAuth.toByteArray();
-                byte[] responseBytes = new byte[headerBytes.length+questionBytes.length+answerBytes.length+authBytes.length];
-                int responseOffset = 0;
-                System.arraycopy(headerBytes,0,responseBytes,responseOffset,headerBytes.length);
-                responseOffset+=headerBytes.length;
-                System.arraycopy(questionBytes,0,responseBytes,responseOffset,questionBytes.length);
-                responseOffset+=questionBytes.length;
-                if(!ipAddress.equals("0.0.0.0")){
-                    System.arraycopy(answerBytes,0,responseBytes,responseOffset,answerBytes.length);
-                    responseOffset+=answerBytes.length;
-                }
-                System.arraycopy(authBytes,0,responseBytes,responseOffset,authBytes.length);
-                DatagramPacket responsePacket = new DatagramPacket(responseBytes,responseBytes.length,packet.getAddress(),packet.getPort());
+                responseMessage.setHeader(
+                        receiveMessage.getHeader().getID(),
+                        flags,
+                        receiveMessage.getHeader().getQDCOUNT(),
+                        1,
+                        1,
+                        0);
+
+                responseMessage.setQuestion(receiveMessage.getQuestion());
+
+                responseMessage.addAnswer(0xc00c,
+                        receiveMessage.getQuestion().getQTYPE(),
+                        receiveMessage.getQuestion().getQCLASS(),
+                        3600 * 24,
+                        4,
+                        ipAddress);
+
+                responseMessage.addAuthority(0xc00c,
+                        6,
+                        receiveMessage.getQuestion().getQCLASS(),
+                        3600 * 24,
+                        0,
+                        null);
+
+                byte[] responseBytes = responseMessage.getResponseByteArray();
+                DatagramPacket responsePacket = new DatagramPacket(
+                        responseBytes, responseBytes.length, packet.getAddress(), packet.getPort());
                 socket.send(responsePacket);
 
             } else {
-                DatagramSocket remoteDNSSocket = new DatagramSocket(remoteDNS);
-                DatagramPacket sendPacket = new DatagramPacket(data, packet.getLength());
+                DatagramSocket remoteDNSSocket = new DatagramSocket();
+                log.info(String.format("Can't find the host %s", receiveMessage.getQuestion().getQNAME()));
+                DatagramPacket sendPacket = new DatagramPacket(data, packet.getLength(), remoteDNS.getAddress(), remoteDNS.getPort());
                 remoteDNSSocket.send(sendPacket);
-                byte[] receivedData = new byte[1024];
-                DatagramPacket internetReceivedPacket = new DatagramPacket(receivedData, receivedData.length);
-                remoteDNSSocket.receive(internetReceivedPacket);
 
-                DatagramPacket responsePacket = new DatagramPacket(receivedData, internetReceivedPacket.getLength(), listenAddress);
+                byte[] receivedData = new byte[1024];
+                DatagramPacket remoteReceivePacket = new DatagramPacket(receivedData, receivedData.length);
+                remoteDNSSocket.receive(remoteReceivePacket);
+
+                DatagramPacket responsePacket = new DatagramPacket(receivedData, receivedData.length, packet.getAddress(), packet.getPort());
                 socket.send(responsePacket);
                 remoteDNSSocket.close();
             }

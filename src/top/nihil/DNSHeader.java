@@ -170,10 +170,11 @@ public class DNSHeader {
     public static final int RCODE_NOT_IMPLEMENTED = 4;
     public static final int RCODE_REFUSE = 5;
 
-    DNSHeader(){}
+    DNSHeader() {
+    }
 
-    DNSHeader(int ID, int flags, int QDCOUNT,int ANCOUNT,int NSCOUNT,int ARCOUNT){
-        this.ID  = ID;
+    public DNSHeader(int ID, int flags, int QDCOUNT, int ANCOUNT, int NSCOUNT, int ARCOUNT) {
+        this.ID = ID;
         this.flags = flags;
         flagsToBits(flags);
         this.QDCOUNT = QDCOUNT;
@@ -182,72 +183,40 @@ public class DNSHeader {
         this.ARCOUNT = ARCOUNT;
     }
 
-    DNSHeader(MessageDataInputStream in) throws IOException {
-        ID = in.readUnsignedShort();
-        int flags = in.readUnsignedShort();
-        flagsToBits(flags);
-        QDCOUNT = in.readUnsignedShort();
-        ANCOUNT = in.readUnsignedShort();
-        NSCOUNT = in.readUnsignedShort();
-        ARCOUNT = in.readUnsignedShort();
-    }
-
-    void headerToStream(DataOutputStream out) throws IOException {
-        out.writeShort((short) ID);
-        int flags = QR ? 1 : 0;
-        flags <<= 4;
-        flags |= OPCODE & 0x0f;
-        flags <<= 1;
-        flags |= AA ? 1 : 0;
-        flags <<= 1;
-        flags |= TC ? 1 : 0;
-        flags <<= 1;
-        flags |= RD ? 1 : 0;
-        flags <<= 1;
-        flags = RA ? 1 : 0;
-        flags <<= 7;
-        flags |= RCODE;
-        out.writeShort((short) flags);
-        out.writeShort((short) QDCOUNT);
-        out.writeShort((short) ANCOUNT);
-        out.writeShort((short) NSCOUNT);
-        out.writeShort((short) ARCOUNT);
-    }
-
-    public byte[] toByteArray(){
+    public byte[] toByteArray() {
         byte[] bytes = new byte[12];
         int offset = 0;
-        System.arraycopy(Converter.shortToByteArray((short) ID),0,bytes,offset,2);
-        offset+=2;
-        System.arraycopy(Converter.shortToByteArray((short) flags),0,bytes,offset,2);
-        offset+=2;
-        System.arraycopy(Converter.shortToByteArray((short) QDCOUNT),0,bytes,offset,2);
-        offset+=2;
-        System.arraycopy(Converter.shortToByteArray((short) ANCOUNT),0,bytes,offset,2);
-        offset+=2;
-        System.arraycopy(Converter.shortToByteArray((short) NSCOUNT),0,bytes,offset,2);
-        offset+=2;
-        System.arraycopy(Converter.shortToByteArray((short) ARCOUNT),0,bytes,offset,2);
+        System.arraycopy(Converter.shortToByteArray(ID), 0, bytes, offset, 2);
+        offset += 2;
+        System.arraycopy(Converter.shortToByteArray(flags), 0, bytes, offset, 2);
+        offset += 2;
+        System.arraycopy(Converter.shortToByteArray(QDCOUNT), 0, bytes, offset, 2);
+        offset += 2;
+        System.arraycopy(Converter.shortToByteArray(ANCOUNT), 0, bytes, offset, 2);
+        offset += 2;
+        System.arraycopy(Converter.shortToByteArray(NSCOUNT), 0, bytes, offset, 2);
+        offset += 2;
+        System.arraycopy(Converter.shortToByteArray(ARCOUNT), 0, bytes, offset, 2);
         return bytes;
     }
 
-    private void flagsToBits(int flags){
+    private void flagsToBits(int flags) {
         RCODE = flags & 0x0f;
         flags >>= 7;
-        RA = (flags & 1) == 1 ? true : false;
+        RA = (flags & 1) == 1;
         flags >>= 1;
-        RD = (flags & 1) == 1 ? true : false;
+        RD = (flags & 1) == 1;
         flags >>= 1;
-        TC = (flags & 1) == 1 ? true : false;
+        TC = (flags & 1) == 1;
         flags >>= 1;
-        AA = (flags & 1) == 1 ? true : false;
+        AA = (flags & 1) == 1;
         flags >>= 1;
         OPCODE = flags & 0x0f;
         flags >>= 4;
-        QR = (flags & 1) == 1 ? true : false;
+        QR = (flags & 1) == 1;
     }
 
-    public void flagsTobits(){
+    public void flagsTobits() {
         flagsToBits(flags);
     }
 }

@@ -1,23 +1,25 @@
 package top.nihil;
 
+import lombok.extern.java.Log;
+
 import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
-
+@Log
 public class Converter {
     private Map<Integer, String> compressedDomainName = new HashMap<>();
 
-    public static short byteArrayToShort(byte[] bytes) {
-        int temp = (bytes[1] & 0xff) << 8;
-        temp = temp | (bytes[0] & 0xff);
-        return (short) temp;
+    public static int byteArrayToUnsignedShort(byte[] bytes) {
+        int temp = (bytes[0] & 0xff) << 8;
+        temp = temp | (bytes[1] & 0xff);
+        return temp;
     }
 
-    public static int byteArrayToInt(byte[] bytes) {
-        int temp = (bytes[3] & 0xff) << 8;
-        temp = (temp | (bytes[2] & 0xff)) << 8;
+    public static long byteArrayToUnsignedInt(byte[] bytes) {
+        long temp = (bytes[0] & 0xff) << 8;
         temp = (temp | (bytes[1] & 0xff)) << 8;
-        temp = temp | (bytes[0] & 0xff);
+        temp = (temp | (bytes[2] & 0xff)) << 8;
+        temp = temp | (bytes[3] & 0xff);
         return temp;
     }
 
@@ -47,19 +49,19 @@ public class Converter {
         }
     }
 
-    public static byte[] shortToByteArray(short s) {
+    public static byte[] shortToByteArray(int  i) {
         byte[] bytes = new byte[2];
-        bytes[1] = (byte) (s & 0xff);
-        bytes[0] = (byte) ((s >> 8) & 0xff);
+        bytes[1] = (byte) (i & 0xff);
+        bytes[0] = (byte) ((i >> 8) & 0xff);
         return bytes;
     }
 
-    public static byte[] intToByteArray(int i) {
+    public static byte[] intToByteArray(long l) {
         byte[] bytes = new byte[4];
-        bytes[3] = (byte) (i & 0xff);
-        bytes[2] = (byte) ((i >> 8) & 0xff);
-        bytes[1] = (byte) ((i >> 16) & 0xff);
-        bytes[0] = (byte) ((i >> 24) & 0xff);
+        bytes[3] = (byte) (l & 0xff);
+        bytes[2] = (byte) ((l >> 8) & 0xff);
+        bytes[1] = (byte) ((l >> 16) & 0xff);
+        bytes[0] = (byte) ((l >> 24) & 0xff);
         return bytes;
     }
 

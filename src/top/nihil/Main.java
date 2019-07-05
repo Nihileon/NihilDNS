@@ -3,6 +3,7 @@ package top.nihil;
 import lombok.Data;
 import lombok.extern.java.Log;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 
 @Log
@@ -19,9 +20,8 @@ public class Main {
         return hostFilePath;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         if (args.length > 0) {
-            log.warning(args[0]);
             if (args[0].equals("-d")) {
                 remoteDNS = args[1];
                 hostFilePath = args[2];
@@ -35,6 +35,7 @@ public class Main {
                 new InetSocketAddress(remoteDNS, 53),
                 new Hosts(hostFilePath)
         );
+        server.start();
     }
 
 }

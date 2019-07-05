@@ -15,6 +15,7 @@ public class Hosts {
 
     public Hosts(String filePath) {
         this.filePath = filePath;
+        readHosts();
     }
 
     private void readHosts() {

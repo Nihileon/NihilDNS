@@ -1,6 +1,7 @@
-package top.nihil;
+package test.top.nihil;
 
 import org.junit.jupiter.api.Test;
+import top.nihil.DNSResourceRecord;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;

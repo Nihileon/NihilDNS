@@ -88,12 +88,6 @@ public class DNSQuestion {
     public static final int QTYPE_MX = (15);
     public static final int QTYPE_AAAA = (28);
 
-    public DNSQuestion(MessageDataInputStream in) throws IOException {
-        QNAME = in.readDomainName();
-        QTYPE = in.readUnsignedShort();
-        QCLASS = in.readUnsignedShort();
-    }
-
     public DNSQuestion() {
 
     }
@@ -119,9 +113,9 @@ public class DNSQuestion {
         int offset =0;
         System.arraycopy(domainNameByte,0,bytes,offset,domainNameByte.length);
         offset+=domainNameByte.length;
-        System.arraycopy(Converter.shortToByteArray((short)QTYPE),0,bytes,offset,2);
+        System.arraycopy(Converter.shortToByteArray(QTYPE),0,bytes,offset,2);
         offset+=2;
-        System.arraycopy(Converter.shortToByteArray((short)QCLASS),0,bytes,offset,2);
+        System.arraycopy(Converter.shortToByteArray(QCLASS),0,bytes,offset,2);
         return bytes;
     }
 
