@@ -53,7 +53,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor()
+@AllArgsConstructor
 public class DNSResourceRecord {
     private int NAME;
     private int TYPE;
@@ -70,7 +70,9 @@ public class DNSResourceRecord {
     public static final int QTYPE_AAAA = (28);
 
     public byte[] toByteArray() {
+        //resource record without RDATA is 12 bytes;
         byte[] bytes = new byte[12 + RDLENGTH];
+
         int offset = 0;
         System.arraycopy(Converter.shortToByteArray(NAME), 0, bytes, offset, 2);
         offset += 2;

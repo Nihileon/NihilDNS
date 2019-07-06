@@ -20,23 +20,21 @@ public class Hosts {
 
     private void readHosts() {
         try {
-            File file = new File(filePath);
-            FileInputStream fileInputStream = new FileInputStream(file);
-            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(filePath));
+
             BufferedReader br = new BufferedReader(inputStreamReader);
-            String line = null;
-            while((line = br.readLine())!=null){
+            String line;
+            while ((line = br.readLine()) != null) {
                 String[] ipAndHost = line.split(" ");
-                if(ipAndHost.length == 2) {
+                if (ipAndHost.length == 2) {
                     hostMap.put(ipAndHost[1], ipAndHost[0]);
                 }
             }
+
             br.close();
-            log.info("read hosts");
-        }catch (Exception e){
+            log.info("Read hosts successfully");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
 }

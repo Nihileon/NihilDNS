@@ -23,10 +23,15 @@ import java.util.List;
 @Data
 @Log
 public class DNSMessage {
+    /*
+    \todo  id 不对，需要将 message 里面的 id 修改为正确的部分。
+     */
     private DNSHeader header;
     private DNSQuestion question;
     private List<DNSResourceRecord> answers;
     private List<DNSResourceRecord> authorities;
+    private int headerAndQuestionLength;
+    byte[] dnsMessageBytes;
 
     DNSMessage() {
         header = new DNSHeader();
@@ -34,6 +39,7 @@ public class DNSMessage {
         answers = new ArrayList<>();
         authorities = new ArrayList<>();
     }
+
     public DNSMessage(byte[] data) {
         header = new DNSHeader();
         question = new DNSQuestion();
@@ -43,7 +49,7 @@ public class DNSMessage {
         int offset = 0;
         header.setID(Converter.byteArrayToUnsignedShort(Arrays.copyOfRange(data, offset, offset + 2)));
         offset += 2;
-        header.setFlags(Converter.byteArrayToUnsignedShort(Arrays.copyOfRange(data, offset, offset + 2))).flagsTobits();
+        header.setFlags(Converter.byteArrayToUnsignedShort(Arrays.copyOfRange(data, offset, offset + 2))).flagsToBits();
         offset += 2;
         header.setQDCOUNT(Converter.byteArrayToUnsignedShort(Arrays.copyOfRange(data, offset, offset + 2)));
         offset += 2;
@@ -61,14 +67,15 @@ public class DNSMessage {
             offset += 2;
             question.setQCLASS(Converter.byteArrayToUnsignedShort(Arrays.copyOfRange(data, offset, offset + 2)));
             offset += 2;
+            headerAndQuestionLength = offset;
         } else {
             log.info("No QDCOUNT error");
         }
     }
 
-    void setHeader(int ID, int flags, int QDCOUNT,int ANCOUNT,int NSCOUNT,int ARCOUNT){
+    void setHeader(int ID, int flags, int QDCOUNT, int ANCOUNT, int NSCOUNT, int ARCOUNT) {
         header.setID(ID);
-        header.setFlags(flags).flagsTobits();
+        header.setFlags(flags).flagsToBits();
         header.setQDCOUNT(QDCOUNT);
         header.setANCOUNT(ANCOUNT);
         header.setNSCOUNT(NSCOUNT);
@@ -84,7 +91,6 @@ public class DNSMessage {
         DNSResourceRecord dnsAuthority = new DNSResourceRecord(NAME, TYPE, CLASS, TTL, RDLENGTH, RDATA);
         authorities.add(dnsAuthority);
     }
-
 
     byte[] getResponseByteArray() {
         int length = 0;
@@ -132,4 +138,7 @@ public class DNSMessage {
         return response;
     }
 
+    void setMessageBytesID(int ID) {
+        System.arraycopy(Converter.shortToByteArray(ID), 0, dnsMessageBytes, 0, 2);
+    }
 }

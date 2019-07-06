@@ -19,7 +19,7 @@ class ConverterTest {
         byte[] bytes = new byte[2];
         bytes[0] = (byte)0x1f;
         bytes[1] = (byte)0x1f;
-        Assertions.assertEquals(0x1f1f, Converter.byteArrayToUnsignedShort(bytes));
+        assertEquals(0x1f1f, Converter.byteArrayToUnsignedShort(bytes));
     }
 
     @Test

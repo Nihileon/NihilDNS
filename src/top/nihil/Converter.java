@@ -7,19 +7,28 @@ import java.util.Map;
 
 @Log
 public class Converter {
-    private Map<Integer, String> compressedDomainName = new HashMap<>();
+    private final Map<Integer, String> compressedDomainName = new HashMap<>();
 
     public static int byteArrayToUnsignedShort(byte[] bytes) {
-        int temp = (bytes[0] & 0xff) << 8;
-        temp = temp | (bytes[1] & 0xff);
+        return Converter.byteArrayToUnsignedShort(bytes, 0);
+    }
+
+    static int byteArrayToUnsignedShort(byte[] bytes, int offset) {
+        int temp = (bytes[offset] & 0xff) << 8;
+        temp = temp | (bytes[offset + 1] & 0xff);
         return temp;
     }
 
     public static long byteArrayToUnsignedInt(byte[] bytes) {
-        long temp = (bytes[0] & 0xff) << 8;
-        temp = (temp | (bytes[1] & 0xff)) << 8;
-        temp = (temp | (bytes[2] & 0xff)) << 8;
-        temp = temp | (bytes[3] & 0xff);
+        return Converter.byteArrayToUnsignedInt(bytes, 0);
+    }
+
+
+    static long byteArrayToUnsignedInt(byte[] bytes, int offset) {
+        long temp = (bytes[offset] & 0xff) << 8;
+        temp = (temp | (bytes[offset + 1] & 0xff)) << 8;
+        temp = (temp | (bytes[offset + 2] & 0xff)) << 8;
+        temp = temp | (bytes[offset + 3] & 0xff);
         return temp;
     }
 
@@ -33,7 +42,7 @@ public class Converter {
         offset++;
         if (partLength >= 0b11000000) {
             int pos = ((partLength & 0b00111111) << 8) | bytes[offset];
-            return byteArrayToDomainName(domainName, bytes, pos);
+            return Converter.byteArrayToDomainName(domainName, bytes, pos);
         } else if (partLength == 0) {
             return domainName;
         } else {
@@ -41,21 +50,21 @@ public class Converter {
             System.arraycopy(bytes, offset, partName, 0, partLength);
             offset += partLength;
             if (domainName == null) {
-                return byteArrayToDomainName("" + new String(partName), bytes, offset);
+                return Converter.byteArrayToDomainName("" + new String(partName), bytes, offset);
             } else {
-                return byteArrayToDomainName(domainName + "." + new String(partName), bytes, offset);
+                return Converter.byteArrayToDomainName(domainName + "." + new String(partName), bytes, offset);
             }
         }
     }
 
-    public static byte[] shortToByteArray(int i) {
+    static byte[] shortToByteArray(int i) {
         byte[] bytes = new byte[2];
         bytes[1] = (byte) (i & 0xff);
         bytes[0] = (byte) ((i >> 8) & 0xff);
         return bytes;
     }
 
-    public static byte[] intToByteArray(long l) {
+    static byte[] intToByteArray(long l) {
         byte[] bytes = new byte[4];
         bytes[3] = (byte) (l & 0xff);
         bytes[2] = (byte) ((l >> 8) & 0xff);

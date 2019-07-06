@@ -15,27 +15,27 @@ import java.util.concurrent.Executors;
 
 @Log
 @Accessors(chain = true)
-@AllArgsConstructor
 class DNSRelayServer {
     private static InetSocketAddress listenAddress, remoteDNS;
-    private Hosts hosts;
+    private final Hosts hosts;
     static DatagramSocket socket;
     public static final Object mLock = new Object();
+    static Cache cache = new Cache();
+    private ExecutorService servicePool;
 
     DNSRelayServer(InetSocketAddress listenAddress, InetSocketAddress remoteDNS, Hosts hosts) {
         DNSRelayServer.listenAddress = listenAddress;
         DNSRelayServer.remoteDNS = remoteDNS;
         this.hosts = hosts;
+        servicePool = Executors.newCachedThreadPool();
         try {
             socket = new DatagramSocket(53, listenAddress.getAddress());
         } catch (SocketException e) {
             e.printStackTrace();
         }
-
     }
 
     void start() {
-        ExecutorService servicePool = Executors.newCachedThreadPool();
         byte[] data = new byte[1024];
         DatagramPacket packet = new DatagramPacket(data, data.length);
         while (true) try {
