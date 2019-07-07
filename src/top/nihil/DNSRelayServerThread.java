@@ -92,9 +92,7 @@ public class DNSRelayServerThread implements Runnable {
     private void notInHostResponse(DNSMessage clientMessage) {
 //      log.info(String.format("Can't find %s in default host file", clientMessage.getQuestion().getQNAME()));
         byte[] result;
-        synchronized (DNSRelayServer.mLock) {
-            result = DNSRelayServer.cache.getCache(clientMessage);
-        }
+        result = DNSRelayServer.cache.getCache(clientMessage);
 
         try {
             if (result == null) {
@@ -113,11 +111,8 @@ public class DNSRelayServerThread implements Runnable {
                 int HeadQuesLength = clientMessage.getHeaderAndQuestionLength();
                 if (Converter.byteArrayToUnsignedShort(result, HeadQuesLength + 2) ==
                         DNSResourceRecord.QTYPE_A) {
-
                     responseMessage.setDnsMessageBytes(result);
-                    synchronized (DNSRelayServer.mLock) {
-                        DNSRelayServer.cache.addCache(responseMessage);
-                    }
+                    DNSRelayServer.cache.addCache(responseMessage);
                 }
             }
 

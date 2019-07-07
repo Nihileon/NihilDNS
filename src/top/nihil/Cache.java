@@ -29,21 +29,22 @@ public class Cache {
         DNSHeader header = message.getHeader();
         long currentTime = getCurrentTime();
 //        log.info(String.format("%d", items.size()));
-
-        Iterator<Cache.Item> iter = items.iterator();
-        while (iter.hasNext()) {
-            Cache.Item item = iter.next();
-            if (item.getTimeout() < currentTime) {
-                iter.remove();
-                continue;
-            }
-            DNSQuestion itemQuestion = item.getMessage().getQuestion();
-            if (question.getQNAME().equals(itemQuestion.getQNAME()) &&
-                    question.getQTYPE() == itemQuestion.getQTYPE() &&
-                    question.getQCLASS() == itemQuestion.getQCLASS()) {
-                log.info("hit cache");
-                item.getMessage().setMessageBytesID(header.getID());
-                return item.getMessage().getDnsMessageBytes();
+        synchronized (items) {
+            Iterator<Cache.Item> iter = items.iterator();
+            while (iter.hasNext()) {
+                Cache.Item item = iter.next();
+                if (item.getTimeout() < currentTime) {
+                    iter.remove();
+                    continue;
+                }
+                DNSQuestion itemQuestion = item.getMessage().getQuestion();
+                if (question.getQNAME().equals(itemQuestion.getQNAME()) &&
+                        question.getQTYPE() == itemQuestion.getQTYPE() &&
+                        question.getQCLASS() == itemQuestion.getQCLASS()) {
+                    log.info("hit cache");
+                    item.getMessage().setMessageBytesID(header.getID());
+                    return item.getMessage().getDnsMessageBytes();
+                }
             }
         }
         return null;
@@ -53,23 +54,25 @@ public class Cache {
         DNSQuestion question = message.getQuestion();
         long currentTime = getCurrentTime();
 
-        Iterator<Cache.Item> iter = items.iterator();
-        while (iter.hasNext()) {
-            DNSQuestion itemQuestion = iter.next().getMessage().getQuestion();
+        synchronized (items) {
+            Iterator<Cache.Item> iter = items.iterator();
+            while (iter.hasNext()) {
+                DNSQuestion itemQuestion = iter.next().getMessage().getQuestion();
 
-            if (question.getQNAME().equals(itemQuestion.getQNAME()) &&
-                    question.getQTYPE() == itemQuestion.getQTYPE() &&
-                    question.getQCLASS() == itemQuestion.getQCLASS()) {
-                log.info("update cache");
-                iter.remove();
+                if (question.getQNAME().equals(itemQuestion.getQNAME()) &&
+                        question.getQTYPE() == itemQuestion.getQTYPE() &&
+                        question.getQCLASS() == itemQuestion.getQCLASS()) {
+                    log.info("update cache");
+                    iter.remove();
+                }
             }
-        }
 
-        long itemTimeout = Converter.byteArrayToUnsignedInt(
-                                message.getDnsMessageBytes(),
-                                message.getHeaderAndQuestionLength() + 6
-                            ) + getCurrentTime();
-        Cache.Item item = new Cache.Item(message, itemTimeout);
-        items.add(item);
+            long itemTimeout = Converter.byteArrayToUnsignedInt(
+                    message.getDnsMessageBytes(),
+                    message.getHeaderAndQuestionLength() + 6
+            ) + getCurrentTime();
+            Cache.Item item = new Cache.Item(message, itemTimeout);
+            items.add(item);
+        }
     }
 }

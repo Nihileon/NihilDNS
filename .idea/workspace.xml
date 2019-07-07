@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="184eea67-882e-4ea2-8a6d-660249ff7f19" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/top/nihil/Cache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/top/nihil/ConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/top/nihil/ConverterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/top/nihil/DNSHeaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/top/nihil/DNSHeaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/top/nihil/DNSMessageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/top/nihil/DNSMessageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/top/nihil/DNSQuestionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/top/nihil/DNSQuestionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/top/nihil/DNSResourceRecordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/top/nihil/DNSResourceRecordTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/top/nihil/HostsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/top/nihil/HostsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/DNSHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/DNSHeader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/DNSMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/DNSMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/DNSQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/DNSQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/top/nihil/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/Cache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/top/nihil/DNSRelayServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/DNSRelayServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/DNSResourceRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/DNSResourceRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/top/nihil/Hosts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/top/nihil/Hosts.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +21,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/top/nihil/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+            <state relative-caret-position="149">
+              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSResourceRecord.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,10 +43,91 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSRelayServerThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1882">
+              <caret line="112" column="52" selection-start-line="112" selection-start-column="52" selection-end-line="112" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/top/nihil/Cache.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="353">
+              <caret line="42" column="75" lean-forward="true" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-68">
+              <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSQuestion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSHeader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="191" column="18" lean-forward="true" selection-start-line="191" selection-start-column="18" selection-end-line="191" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSQuestionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSResourceRecordTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,6 +162,7 @@
       <find>throw</find>
       <find>cache</find>
       <find>receive</find>
+      <find>sync</find>
     </findStrings>
     <replaceStrings>
       <replace>MessageDataInputStream</replace>
@@ -121,19 +201,19 @@
         <option value="$PROJECT_DIR$/src/top/nihil/Converter.java" />
         <option value="$PROJECT_DIR$/src/top/nihil/DNSMessage.java" />
         <option value="$PROJECT_DIR$/src/top/nihil/DNSQuestion.java" />
-        <option value="$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java" />
         <option value="$PROJECT_DIR$/src/top/nihil/DNSResourceRecord.java" />
         <option value="$PROJECT_DIR$/src/top/nihil/Hosts.java" />
+        <option value="$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java" />
         <option value="$PROJECT_DIR$/src/top/nihil/DNSRelayServerThread.java" />
         <option value="$PROJECT_DIR$/src/top/nihil/Cache.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-236" />
-    <option name="y" value="-1057" />
-    <option name="width" value="1896" />
-    <option name="height" value="1045" />
+    <option name="x" value="12" />
+    <option name="y" value="35" />
+    <option name="width" value="1416" />
+    <option name="height" value="853" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -143,8 +223,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -177,6 +255,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -314,8 +394,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.HostsTest" />
         <item itemvalue="JUnit.test.top.nihil in NihilDNS" />
+        <item itemvalue="JUnit.HostsTest" />
         <item itemvalue="JUnit.DNSMessageTest.constructor" />
         <item itemvalue="JUnit.ConverterTest.byteArrayToShort" />
       </list>
@@ -338,14 +418,15 @@
       <workItem from="1562293984217" duration="3089000" />
       <workItem from="1562308700224" duration="7641000" />
       <workItem from="1562324896305" duration="18914000" />
-      <workItem from="1562371506386" duration="3673000" />
+      <workItem from="1562371506386" duration="4060000" />
+      <workItem from="1562375904918" duration="632000" />
+      <workItem from="1562487882377" duration="64000" />
+      <workItem from="1562492256179" duration="366000" />
+      <workItem from="1562494797341" duration="735000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ConverterTest_byteArrayToShort - 2019.07.05 at 10h 49m 18s.xml">
-      <configuration name="ConverterTest.byteArrayToShort" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="DNSMessageTest_constructor - 2019.07.05 at 11h 00m 17s.xml">
       <configuration name="DNSMessageTest.constructor" configurationId="JUnit" />
     </history-entry>
@@ -373,9 +454,12 @@
     <history-entry file="HostsTest - 2019.07.06 at 08h 35m 39s.xml">
       <configuration name="HostsTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="test_top_nihil_in_NihilDNS - 2019.07.06 at 09h 27m 06s.xml">
+      <configuration name="test.top.nihil in NihilDNS" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98549000" />
+    <option name="totallyTimeSpent" value="100733000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -387,10 +471,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-236" y="-1057" width="1896" height="1045" extended-state="0" />
+    <frame x="12" y="35" width="1416" height="853" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20334412" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16302766" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -399,7 +483,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32528856" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26967472" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2693824" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39947438" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -409,7 +493,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32843652" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32858992" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32843652" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -425,14 +509,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/src.zip!/java/awt/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="147" column="13" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/Question.java" />
     <entry file="file://$PROJECT_DIR$/src/top/nihil/Header.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_212.jdk/Contents/Home/src.zip!/java/io/DataOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -519,16 +595,6 @@
     <entry file="jar://$PROJECT_DIR$/../Test.jar!/com/company/Question.class" />
     <entry file="jar://$PROJECT_DIR$/../Test.jar!/com/company/DNS_Header.class" />
     <entry file="file://$PROJECT_DIR$/src/test/top/nihil/MainTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSResourceRecordTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../Test.jar!/com/company/Packet_Analysis.class" />
     <entry file="uml://JAVA/test.top.nihil.ConverterTest">
       <provider selected="true" editor-type-id="UmlEditorProvider">
@@ -545,13 +611,6 @@
           <Categories />
           <SCOPE>All</SCOPE>
           <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/ConverterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -734,9 +793,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/Converter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#272#273#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nihildns.properties" />
+    <entry file="file://$PROJECT_DIR$/nihildns.xml" />
+    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSMessageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSHeaderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="170">
           <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -744,10 +827,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSMessageTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/ConverterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+        <state relative-caret-position="204">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/HostsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/Hosts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -761,14 +861,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/Converter.java">
+    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/DNSResourceRecordTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#272#273#0" expanded="true" />
-            <element signature="e#339#340#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/Cache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="42" column="75" lean-forward="true" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSResourceRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -783,20 +931,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSResourceRecord.java">
+    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSQuestion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/Hosts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        <state relative-caret-position="494">
+          <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -805,70 +943,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSRelayServerThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="131" column="9" lean-forward="true" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSRelayServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5023#5024#0" expanded="true" />
-            <element signature="e#5113#5114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/top/nihil/HostsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/DNSQuestion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="42" lean-forward="true" selection-start-line="84" selection-start-column="42" selection-end-line="84" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/top/nihil/Cache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="1882">
+          <caret line="112" column="52" selection-start-line="112" selection-start-column="52" selection-end-line="112" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
