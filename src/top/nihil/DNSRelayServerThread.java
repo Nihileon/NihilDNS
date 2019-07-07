@@ -108,9 +108,9 @@ public class DNSRelayServerThread implements Runnable {
                 remoteDNSSocket.close();
 
                 DNSMessage responseMessage = new DNSMessage(result);
-                int HeadQuesLength = clientMessage.getHeaderAndQuestionLength();
-                if (Converter.byteArrayToUnsignedShort(result, HeadQuesLength + 2) ==
-                        DNSResourceRecord.QTYPE_A) {
+                int headQuesLength = clientMessage.getHeaderAndQuestionLength();
+                int RRType = Converter.byteArrayToUnsignedShort(result, headQuesLength + 2);
+                if (RRType== DNSResourceRecord.QTYPE_A||RRType== DNSResourceRecord.QTYPE_AAAA) {
                     responseMessage.setDnsMessageBytes(result);
                     DNSRelayServer.cache.addCache(responseMessage);
                 }

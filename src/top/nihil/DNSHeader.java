@@ -159,16 +159,16 @@ public class DNSHeader {
 
     int flags;
 
-    public static final int OPCODE_QUERY = (0);
-    public static final int OPCODE_IQUERY = (1);
-    public static final int OPCODE_STATUS = (2);
+    public static final int OPCODE_QUERY = 0;
+    public static final int OPCODE_IQUERY = 1;
+    public static final int OPCODE_STATUS = 2;
 
-    public static final int RCODE_NO_ERROR = (0);
-    public static final int RCODE_FORMAT_ERROR = (1);
-    public static final int RCODE_SERVER_FAILURE = (2);
-    public static final int RCODE_NAME_ERROR = (3);
-    public static final int RCODE_NOT_IMPLEMENTED = (4);
-    public static final int RCODE_REFUSE = (5);
+    public static final int RCODE_NO_ERROR = 0;
+    public static final int RCODE_FORMAT_ERROR = 1;
+    public static final int RCODE_SERVER_FAILURE = 2;
+    public static final int RCODE_NAME_ERROR = 3;
+    public static final int RCODE_NOT_IMPLEMENTED = 4;
+    public static final int RCODE_REFUSE = 5;
 
     DNSHeader() {
     }
